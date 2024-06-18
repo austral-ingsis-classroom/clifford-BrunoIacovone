@@ -7,14 +7,15 @@ import java.util.List;
 import java.util.Map;
 
 public class MyFileSystemRunner implements FileSystemRunner{
-    private Si si;
+    private final Si si;
 
     public MyFileSystemRunner() {
-        this.si = new Si();
+        this.si = Si.getInstance();
     }
 
     @Override
     public List<String> executeCommands(List<String> commands) {
+        si.clear();
         List<String> result = new ArrayList<>();
         Map<String, CommandBuilder> map = si.commandBuilders;
         for (String command : commands) {
